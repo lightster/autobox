@@ -1,0 +1,5 @@
+---
+# This playbook contains common plays that will be run on all nodes.
+
+- lineinfile: dest=/etc/sysconfig/network regexp=^HOSTNAME= line=HOSTNAME={{ hostname }}
+- hostname: name={{ hostname }}
