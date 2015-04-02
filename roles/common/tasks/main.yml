@@ -1,5 +1,8 @@
 ---
 # This playbook contains common plays that will be run on all nodes.
 
-- lineinfile: dest=/etc/sysconfig/network regexp=^HOSTNAME= line=HOSTNAME={{ ansible_ssh_host }}
-- hostname: name={{ ansible_ssh_host }}
+- lineinfile: >
+    dest=/etc/sysconfig/network
+    regexp=^HOSTNAME=
+    line=HOSTNAME={{ inventory_hostname }}{{ hostname_suffix }}
+- hostname: name={{ inventory_hostname }}{{ hostname_suffix }}
