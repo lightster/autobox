@@ -1,8 +1,5 @@
 [webservers]
 smart      ansible_ssh_user=root ansible_ssh_host=smart.l.com
 
-[all:children]
-webservers
-
 [all:vars]
 hostname_suffix=.l.com
