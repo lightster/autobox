@@ -24,7 +24,7 @@
 - name: "Check current timezone"
   shell: timedatectl | grep 'Timezone:' | awk '{print $2}'
   register: current_timezone
-  changed_when: False
+  changed_when: current_timezone.stdout != '{{ timezone }}'
 
 - name: "Set timezone"
   command: timedatectl set-timezone {{ timezone }}
