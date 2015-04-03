@@ -19,3 +19,13 @@
     state=present
   when: hostvars[item].ansible_default_ipv4.address is defined
   with_items: groups['all']
+
+
+- name: "Check current timezone"
+  shell: timedatectl | grep 'Timezone:' | awk '{print $2}'
+  register: current_timezone
+  changed_when: False
+
+- name: "Set timezone"
+  command: timedatectl set-timezone {{ timezone }}
+  when: current_timezone.stdout != '{{ timezone }}'
