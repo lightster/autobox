@@ -1,11 +1,14 @@
 ---
 # This playbook contains common plays that will be run on all nodes.
 
-- lineinfile: >
+- name: "Set hostname in /etc/sysconfig/network"
+  lineinfile: >
     dest=/etc/sysconfig/network
     regexp=^HOSTNAME=
     line=HOSTNAME={{ inventory_hostname }}{{ hostname_suffix }}
-- hostname: name={{ inventory_hostname }}{{ hostname_suffix }}
+
+- name: 'Set hostname using `hostname`'
+  hostname: name={{ inventory_hostname }}{{ hostname_suffix }}
 
 
 - name: "Build hosts file"
