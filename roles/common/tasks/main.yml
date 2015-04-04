@@ -29,3 +29,7 @@
 - name: "Set timezone"
   command: timedatectl set-timezone {{ timezone }}
   when: current_timezone.stdout != '{{ timezone }}'
+
+
+- name: Upgrade all packages
+  yum: name=* state=latest update_cache={{ yum_upgrade_update_cache }}
