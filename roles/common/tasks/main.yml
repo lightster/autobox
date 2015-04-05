@@ -31,5 +31,10 @@
   when: current_timezone.stdout != '{{ timezone }}'
 
 
+- name: Install EPEL
+  shell: rpm -Uvh http://mirror.redsox.cc/pub/epel/7/x86_64/e/epel-release-7-5.noarch.rpm
+    creates=/etc/yum.repos.d/epel.repo
+
+
 - name: Upgrade all packages
   yum: name=* state=latest update_cache={{ yum_upgrade_update_cache }}
