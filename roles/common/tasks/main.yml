@@ -43,3 +43,14 @@
 
 - name: Upgrade all packages
   yum: name=* state=latest update_cache={{ yum_upgrade_update_cache }}
+
+
+- name: Install packages required to install other software
+  yum: pkg={{item}} state=installed update_cache=no
+  with_items:
+   - gcc
+   - openssl-devel
+   - curl-devel
+   - expat-devel
+   - cpan
+   - gettext-devel
