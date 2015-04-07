@@ -54,3 +54,4 @@
    - expat-devel
    - cpan
    - gettext-devel
+   - vim
