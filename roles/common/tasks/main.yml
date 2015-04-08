@@ -55,3 +55,7 @@
    - cpan
    - gettext-devel
    - vim
+
+
+- name: Add passwordless sudo to wheel group
+  lineinfile: "dest=/etc/sudoers state=present regexp='^%wheel' line='%wheel ALL=(ALL) NOPASSWD: ALL'"
