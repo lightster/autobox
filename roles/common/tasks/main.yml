@@ -53,6 +53,7 @@
    - curl-devel
    - expat-devel
    - cpan
+   - perl-App-cpanminus
    - gettext-devel
    - vim
 
