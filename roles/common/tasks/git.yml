@@ -1,0 +1,9 @@
+- name: Install packages required to install git
+  yum: pkg={{item}} state=installed update_cache=no
+  with_items:
+   - gcc
+   - openssl-devel
+   - curl-devel
+   - expat-devel
+   - perl-App-cpanminus
+   - gettext-devel

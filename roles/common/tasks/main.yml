@@ -45,21 +45,13 @@
   yum: name=* state=latest update_cache={{ yum_upgrade_update_cache }}
 
 
-- name: Install packages required to install other software
+- name: Install useful utility packages
   yum: pkg={{item}} state=installed update_cache=no
   with_items:
-   - gcc
-   - openssl-devel
-   - curl-devel
-   - expat-devel
-   - cpan
-   - perl-App-cpanminus
-   - gettext-devel
    - vim
 
 
-- name: Install cpan modules required by git compilation
-  cpanm: name=ExtUtils::MakeMaker
+- include: git.yml
 
 
 - name: Add passwordless sudo to wheel group
