@@ -5,3 +5,4 @@ smart      ansible_ssh_user=root ansible_ssh_host=smart.l.com
 hostname_suffix=.l.com
 timezone=UTC
 yum_upgrade_update_cache=yes
+git_version=2.3.5
