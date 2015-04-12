@@ -1,5 +1,5 @@
 [webservers]
-smart      ansible_ssh_user=root ansible_ssh_host=smart.l.com
+smart      ansible_ssh_user=vagrant ansible_ssh_host=smart.l.com
 
 [all:vars]
 hostname_suffix=.l.com
