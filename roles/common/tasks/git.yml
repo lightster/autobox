@@ -11,28 +11,38 @@
 - name: Install cpan modules required by git compilation
   cpanm: name=ExtUtils::MakeMaker
 
+- name: Default installed git version to unknown
+  set_fact:
+    installed_git_version: "unknown"
+
 - name: Determine installed git version
-  command: git --version
-  register: installed_git_version
+  command: /usr/local/bin/git --version
+  register: installed_git_version_output
   ignore_errors: True
-  changed_when: installed_git_version.stdout != "git version {{ git_version }}"
+  failed_when: False
+  changed_when: False
+
+- name: Set installed git version based on findings
+  set_fact:
+    installed_git_version: '{{ installed_git_version_output.stdout }}'
+  when: installed_git_version_output.rc == 0
 
 - name: Download git
   get_url: url=https://github.com/git/git/archive/v{{ git_version }}.tar.gz dest=/tmp/git.tar.gz
-  when: installed_git_version.stdout != 'git version {{ git_version }}'
+  when: installed_git_version != 'git version {{ git_version }}'
 
 - name: Extract git tarball
   unarchive: src=/tmp/git.tar.gz dest=/tmp copy=no
-  when: installed_git_version.stdout != 'git version {{ git_version }}'
+  when: installed_git_version != 'git version {{ git_version }}'
 
 - name: Run 'make all' for git
   shell: NO_TCLTK=1 make prefix=/usr/local all chdir=/tmp/git-{{ git_version }}
-  when: installed_git_version.stdout != 'git version {{ git_version }}'
+  when: installed_git_version != 'git version {{ git_version }}'
 
 - name: Run 'make install' for git
   shell: make prefix=/usr/local install chdir=/tmp/git-{{ git_version }}
-  when: installed_git_version.stdout != 'git version {{ git_version }}'
+  when: installed_git_version != 'git version {{ git_version }}'
 
 - name: Delete downloaded git files
   shell: rm -rf /tmp/git*
-  when: installed_git_version.stdout != 'git version {{ git_version }}'
+  when: installed_git_version != 'git version {{ git_version }}'
