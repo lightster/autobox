@@ -1,8 +1,9 @@
 [webservers]
-smart      ansible_ssh_user=vagrant ansible_ssh_host=smart.l.com
-bourne     ansible_ssh_user=vagrant ansible_ssh_host=bourne.l.com
+smart      ansible_ssh_host=smart.l.com
+bourne     ansible_ssh_host=bourne.l.com
 
 [all:vars]
+ansible_ssh_user=vagrant
 hostname_suffix=.l.com
 timezone=UTC
 yum_upgrade_update_cache=yes
