@@ -10,24 +10,7 @@
 - name: 'Set hostname using `hostname`'
   hostname: name={{ inventory_hostname }}{{ hostname_suffix }}
 
-
-- name: "Add ipv4 address to hosts file"
-  lineinfile: >
-    dest=/etc/hosts
-    regexp='^{{ hostvars[item].ipv4 }}'
-    line='{{ hostvars[item].ipv4 }} {{ item }} {{ item }}{{ hostname_suffix }}'
-    state=present
-  when: hostvars[item].ipv4 is defined
-  with_items: groups['all']
-
-- name: "Add ipv6 address to hosts file"
-  lineinfile: >
-    dest=/etc/hosts
-    regexp='^{{ hostvars[item].ipv6 }}'
-    line='{{ hostvars[item].ipv6 }} {{ item }} {{ item }}{{ hostname_suffix }}'
-    state=present
-  when: hostvars[item].ipv6 is defined
-  with_items: groups['all']
+- include: hosts-file.yml
 
 
 - name: "Check current timezone"
