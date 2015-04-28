@@ -1,0 +1,5 @@
+- name: Enable firewalld
+  service: name=firewalld enabled=yes state=started
+
+- name: Allow SSH traffic through the firewall
+  firewalld: service=ssh permanent=true state=enabled
