@@ -1,6 +1,6 @@
 [webservers]
-smart      ansible_ssh_host=smart.l.com
-bourne     ansible_ssh_host=bourne.l.com
+smart      ansible_ssh_host=smart.l.com  ipv4=192.168.60.71
+bourne     ansible_ssh_host=bourne.l.com ipv4=192.168.60.61
 
 [all:vars]
 ansible_ssh_user=boxkeeper
