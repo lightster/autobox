@@ -38,7 +38,7 @@
 
 
 - name: Install useful utility packages
-  yum: pkg={{item}} state=installed update_cache=no
+  yum: pkg={{item}} state=present
   with_items:
    - vim
 
