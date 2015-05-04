@@ -8,9 +8,9 @@
   roles:
     - common
 
-#- name: configure and deploy the webservers and application code
-#  hosts: webservers
-#  remote_user: root
-#
-#  roles:
-#    - web
+- name: configure the webservers
+  hosts: webservers
+  sudo: yes
+
+  roles:
+    - webservers
