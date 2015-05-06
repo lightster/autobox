@@ -4,9 +4,13 @@
   yum: pkg={{item}} state=present
   with_items:
    - nginx
+   - php-fpm
 
 - name: Enable nginx
   service: name=nginx enabled=yes state=started
+
+- name: Enable php-fpm
+  service: name=php-fpm enabled=yes state=started
 
 - name: Allow web traffic through the firewall
   firewalld: service={{ item }} permanent=true state=enabled
