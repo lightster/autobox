@@ -4,6 +4,7 @@
   yum: pkg={{item}} state=present
   with_items:
    - nginx
+   - php
    - php-fpm
 
 - name: Enable nginx
