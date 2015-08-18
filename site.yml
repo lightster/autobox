@@ -14,4 +14,11 @@
 
   roles:
     - webservers
+
+- name: install lidsys-web codebase
+  hosts: webservers
+  sudo: yes
+  serial: 1
+
+  roles:
     - lidsys-web
