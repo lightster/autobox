@@ -1,0 +1,12 @@
+---
+
+- name: Download and run composer installer
+  shell: >
+    curl -sS https://getcomposer.org/installer | php
+    creates={{ composer_path }}
+
+- name: Move composer into bin dir
+  shell: >
+    mv composer.phar {{ composer_path }}
+    creates={{ composer_path }}
+
