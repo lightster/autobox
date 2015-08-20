@@ -10,3 +10,6 @@
        dest=/var/www/html/lidsys-web/
        accept_hostkey=yes
   sudo: no
+
+- name: Install lightdatasys.com nginx vhost
+  template: src=nginx/conf.d/lightdatasys.com.conf.j2 dest=/etc/nginx/conf.d/lightdatasys.com.conf
