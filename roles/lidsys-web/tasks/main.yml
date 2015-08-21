@@ -11,5 +11,9 @@
        accept_hostkey=yes
   sudo: no
 
+- name: Run composer install
+  composer: command=install
+            working_dir=/var/www/html/lidsys-web
+
 - name: Install lightdatasys.com nginx vhost
   template: src=nginx/conf.d/lightdatasys.com.conf.j2 dest=/etc/nginx/conf.d/lightdatasys.com.conf
