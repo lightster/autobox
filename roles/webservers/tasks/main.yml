@@ -13,6 +13,17 @@
 - name: Enable php-fpm
   service: name=php-fpm enabled=yes state=started
 
+- name: Set php-fpm settings
+  lineinfile: >
+    dest=/etc/php-fpm.d/www.conf
+    regexp='^{{ item.setting }} = '
+    line='{{ item.setting }} = {{ item.value }}'
+    state=present
+  with_items:
+    - { setting: 'user', value: '{{ keeper_username }}' }
+    - { setting: 'group', value: '{{ web_username }}' }
+  notify: restart php-fpm
+
 - name: Allow web traffic through the firewall
   firewalld: service={{ item }} permanent=true state=enabled
   with_items:
