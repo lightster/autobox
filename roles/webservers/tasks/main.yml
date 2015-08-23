@@ -24,6 +24,17 @@
     - { setting: 'group', value: '{{ web_username }}' }
   notify: restart php-fpm
 
+- name: Set PHP timezone
+  lineinfile: >
+    dest=/etc/php.d/timezone.ini
+    line='date.timezone="UTC"'
+    owner=root
+    group=root
+    mode=0644
+    state=present
+    create=yes
+  notify: restart php-fpm
+
 - name: Allow web traffic through the firewall
   firewalld: service={{ item }} permanent=true state=enabled
   with_items:
