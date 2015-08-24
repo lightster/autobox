@@ -15,6 +15,7 @@
   roles:
     - webservers
     - composer
+    - mariadb
 
 - name: install lidsys-web codebase
   hosts: webservers
