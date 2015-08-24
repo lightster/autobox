@@ -27,7 +27,7 @@
 - name: Set PHP timezone
   lineinfile: >
     dest=/etc/php.d/timezone.ini
-    line='date.timezone="UTC"'
+    line='date.timezone="{{ timezone }}"'
     owner=root
     group=root
     mode=0644
