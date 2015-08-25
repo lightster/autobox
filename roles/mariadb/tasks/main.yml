@@ -4,6 +4,7 @@
   yum: pkg={{item}} state=present
   with_items:
    - mariadb-server
+   - MySQL-python
 
 - name: Enable mariadb
   service: name=mariadb enabled=yes state=started
