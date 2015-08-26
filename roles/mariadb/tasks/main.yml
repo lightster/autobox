@@ -8,3 +8,9 @@
 
 - name: Enable mariadb
   service: name=mariadb enabled=yes state=started
+
+- name: delete anonymous mariadb user for localhost
+  action: mysql_user user="" host="localhost" state="absent"
+
+- name: delete anonymous mariadb user for hostname
+  action: mysql_user user="" host="{{ ansible_hostname }}" state="absent"
