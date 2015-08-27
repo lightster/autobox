@@ -26,3 +26,13 @@
     user=""
     host="{{ ansible_hostname }}"
     state="absent"
+
+- name: set mariadb superuser's password
+  mysql_user: >
+    check_implicit_admin=yes
+    login_user={{ mariadb_superuser_username }}
+    login_password={{ mariadb_superuser_password }}
+    name={{ mariadb_superuser_username }}
+    password={{ mariadb_superuser_password }}
+    priv=*.*:ALL,GRANT
+    state=present
