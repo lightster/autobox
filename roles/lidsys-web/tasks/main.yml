@@ -20,3 +20,16 @@
 
 - name: Install lightdatasys.com nginx vhost
   template: src=nginx/conf.d/lightdatasys.com.conf.j2 dest=/etc/nginx/conf.d/lightdatasys.com.conf
+
+- name: Make sure lidsys DB user exists
+  mysql_user: >
+    check_implicit_admin=yes
+    login_user={{ mariadb_superuser_username }}
+    login_password={{ mariadb_superuser_password }}
+    host={{ hostvars[item].ipv4 }}
+    name={{ lidsys_mariadb_username }}
+    password={{ lidsys_mariadb_password }}
+    priv={{ lidsys_mariadb_database }}.*:ALL
+    state=present
+  when: hostvars[item].ipv4 is defined
+  with_items: groups['webservers']
