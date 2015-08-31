@@ -33,3 +33,8 @@
     state=present
   when: hostvars[item].ipv4 is defined
   with_items: groups['webservers']
+
+- name: Install lightdatasys.com app 'app' config
+  template: >
+    src=app/config/autoload/app.local.php.j2
+    dest=/var/www/html/lidsys-web/config/autoload/app.local.php
