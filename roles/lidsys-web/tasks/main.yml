@@ -38,3 +38,8 @@
   template: >
     src=app/config/autoload/app.local.php.j2
     dest=/var/www/html/lidsys-web/config/autoload/app.local.php
+
+- name: Install lightdatasys.com app 'auth' config
+  template: >
+    src=app/config/autoload/auth.local.php.j2
+    dest=/var/www/html/lidsys-web/config/autoload/auth.local.php
