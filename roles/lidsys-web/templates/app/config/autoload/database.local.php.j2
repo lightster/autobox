@@ -1,0 +1,16 @@
+<?php
+$dbParams = [
+    'hostname'  => '{{ lidsys_mariadb_hostname }}',
+    'username'  => '{{ lidsys_mariadb_username }}',
+    'password'  => '{{ lidsys_mariadb_password }}',
+    'database'  => '{{ lidsys_mariadb_database }}',
+];
+return [
+    'db.config' => [
+        'dsn'       => 'mysql:dbname='.$dbParams['database'].';host='.$dbParams['hostname'],
+        'database'  => $dbParams['database'],
+        'username'  => $dbParams['username'],
+        'password'  => $dbParams['password'],
+        'hostname'  => $dbParams['hostname'],
+    ],
+];
