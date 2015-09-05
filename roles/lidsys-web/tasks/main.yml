@@ -1,5 +1,15 @@
 ---
 
+- name: Default is_debug_mode to "false"
+  set_fact:
+    is_debug_mode: "false"
+
+- name: Set is_debug_mode based on application_environment
+  set_fact:
+    is_debug_mode: "true"
+  when: application_environment == "development"
+  changed_when: False
+
 - name: Install packages required by lidsys-web
   yum: pkg={{item}} state=present
   with_items:
@@ -48,6 +58,11 @@
   template: >
     src=app/config/autoload/database.local.php.j2
     dest=/var/www/html/lidsys-web/config/autoload/database.local.php
+
+- name: Install lightdatasys.com app 'debug' config
+  template: >
+    src=app/config/autoload/debug.local.php.j2
+    dest=/var/www/html/lidsys-web/config/autoload/debug.local.php
 
 - name: Install lightdatasys.com app 'mailer' config
   template: >
