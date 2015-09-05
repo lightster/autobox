@@ -48,3 +48,8 @@
   template: >
     src=app/config/autoload/database.local.php.j2
     dest=/var/www/html/lidsys-web/config/autoload/database.local.php
+
+- name: Install lightdatasys.com app 'mailer' config
+  template: >
+    src=app/config/autoload/mailer.local.php.j2
+    dest=/var/www/html/lidsys-web/config/autoload/mailer.local.php
