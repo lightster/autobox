@@ -7,3 +7,4 @@
 domain_suffix=
 hostname_suffix=.r34d.me
 lidsys_mariadb_database=live_lidsys
+application_environment=production
