@@ -35,6 +35,27 @@
     create=yes
   notify: restart php-fpm
 
+- name: Default facts to non-development application environment
+  set_fact:
+    php_display_errors: "Off"
+
+- name: Set facts based on application_environment
+  set_fact:
+    php_display_errors: "On"
+  when: application_environment == "development"
+  changed_when: False
+
+- name: Set PHP error handler settings
+  lineinfile: >
+    dest=/etc/php.d/error.ini
+    regexp='^{{ item.setting }} = '
+    line='{{ item.setting }} = {{ item.value }}'
+    state=present
+    create=yes
+  with_items:
+    - { setting: 'display_errors', value: '{{ php_display_errors }}' }
+  notify: restart php-fpm
+
 - name: Allow web traffic through the firewall
   firewalld: service={{ item }} permanent=true state=enabled
   with_items:
