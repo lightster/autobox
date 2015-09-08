@@ -6,6 +6,8 @@
    - nginx
    - php
    - php-fpm
+   - php-pdo
+   - php-mysqlnd
 
 - name: Enable nginx
   service: name=nginx enabled=yes state=started
