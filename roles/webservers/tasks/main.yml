@@ -24,6 +24,13 @@
     - { setting: 'group', value: '{{ web_username }}' }
   notify: restart php-fpm
 
+- name: Make session dir writable by web server
+  file: >
+    path=/var/lib/php/session
+    state=directory
+    owner='{{ keeper_username }}'
+    group='{{ web_username }}'
+
 - name: Set PHP timezone
   lineinfile: >
     dest=/etc/php.d/timezone.ini
