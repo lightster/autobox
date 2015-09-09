@@ -1,5 +1,7 @@
 ---
 
+- include_vars: secure.yml
+
 - name: Default is_debug_mode to "false"
   set_fact:
     is_debug_mode: "false"
