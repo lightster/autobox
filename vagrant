@@ -4,5 +4,6 @@ bourne     ansible_ssh_host=bourne.l.com ipv4=192.168.60.61 domain_suffix=.bourn
 
 [all:vars]
 hostname_suffix=.l.com
-lidsys_mariadb_database=dev_lidsys
+lidsys_mariadb_hostname=10.0.2.2
+lidsys_mariadb_database=lidsys_dev2
 application_environment=development
