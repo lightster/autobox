@@ -8,6 +8,13 @@
   roles:
     - common
 
+- name: configure the webfrontend nodes
+  hosts: webfrontend
+  sudo: yes
+
+  roles:
+    - webfrontend
+
 - name: configure the webservers
   hosts: webservers
   sudo: yes
