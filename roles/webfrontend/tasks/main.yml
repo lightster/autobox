@@ -13,4 +13,6 @@
   with_items:
    - http
    - https
-  notify: restart firewalld
+  notify:
+   - restart firewalld
+   - wait for firewalld to restart
