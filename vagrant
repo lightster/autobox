@@ -1,4 +1,4 @@
-[webfrontend]
+[spf]
 smart      ansible_ssh_host=smart.l.com  ipv4=192.168.60.71 domain_suffix=.smart.l.com
 
 [webservers]

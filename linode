@@ -1,4 +1,4 @@
-[webfrontend]
+[spf]
 #smart     ansible_ssh_host=smart.r34d.me  ipv4=50.116.5.177    ipv6=2600:3c01::f03c:91ff:fe89:e8bb
 
 [webservers]

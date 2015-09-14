@@ -8,8 +8,8 @@
   roles:
     - common
 
-- name: configure the webfrontend nodes
-  hosts: webfrontend
+- name: configure the spf nodes
+  hosts: spf
   sudo: yes
 
   roles:
