@@ -2,6 +2,3 @@
 
 - name: restart php-fpm
   service: name=php-fpm state=restarted
-
-- name: restart firewalld
-  service: name=firewalld state=restarted
