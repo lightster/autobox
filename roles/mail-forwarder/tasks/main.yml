@@ -1,0 +1,7 @@
+---
+
+- name: Install mail services
+  yum: pkg={{item}} state=present
+  with_items:
+   - dovecot
+   - dovecot-mysql

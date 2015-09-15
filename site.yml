@@ -13,6 +13,7 @@
   sudo: yes
 
   roles:
+    - mail-forwarder
     - webfrontend
 
 - name: configure the webservers
