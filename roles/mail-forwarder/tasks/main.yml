@@ -5,3 +5,6 @@
   with_items:
    - dovecot
    - dovecot-mysql
+
+- name: Disable sendmail
+  service: name=sendmail enabled=no state=stopped
