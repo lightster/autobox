@@ -1,5 +1,7 @@
 ---
 
+- include_vars: secure.yml
+
 - name: Install mail services
   yum: pkg={{item}} state=present
   with_items:
@@ -8,3 +10,16 @@
 
 - name: Disable sendmail
   service: name=sendmail enabled=no state=stopped
+
+- name: Make sure mailuser DB user exists
+  mysql_user: >
+    check_implicit_admin=yes
+    login_user={{ mariadb_superuser_username }}
+    login_password={{ mariadb_superuser_password }}
+    host={{ hostvars[item].ipv4 }}
+    name={{ mailforwarder_mariadb_username }}
+    password={{ mailforwarder_mariadb_password }}
+    priv={{ mailforwarder_mariadb_database }}.*:ALL
+    state=present
+  when: hostvars[item].ipv4 is defined
+  with_items: groups['webservers']
