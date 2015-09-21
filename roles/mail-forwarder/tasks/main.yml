@@ -11,6 +11,9 @@
 - name: Disable sendmail
   service: name=sendmail enabled=no state=stopped
 
+- name: Enable postfix
+  service: name=postfix enabled=yes state=started
+
 - name: Make sure mailuser DB user exists
   mysql_user: >
     check_implicit_admin=yes
