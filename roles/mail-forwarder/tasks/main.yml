@@ -14,6 +14,9 @@
 - name: Enable postfix
   service: name=postfix enabled=yes state=started
 
+- name: Enable dovecot
+  service: name=dovecot enabled=yes state=started
+
 - name: Make sure mailuser DB user exists
   mysql_user: >
     check_implicit_admin=yes
