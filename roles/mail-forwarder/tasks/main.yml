@@ -20,6 +20,7 @@
 - name: Make sure mailuser DB user exists
   mysql_user: >
     check_implicit_admin=yes
+    login_host={{ mailforwarder_mariadb_hostname }}
     login_user={{ mariadb_superuser_username }}
     login_password={{ mariadb_superuser_password }}
     host={{ hostvars[item].ipv4 }}
@@ -29,3 +30,11 @@
     state=present
   when: hostvars[item].ipv4 is defined
   with_items: groups['webservers']
+
+- name: Make sure DB exists
+  mysql_db: >
+    name={{ mailforwarder_mariadb_database }}
+    state=present
+    login_host={{ mailforwarder_mariadb_hostname }}
+    login_user={{ mariadb_superuser_username }}
+    login_password={{ mariadb_superuser_password }}
