@@ -15,6 +15,7 @@
   roles:
     - mail-forwarder
     - webfrontend
+    - rabbitmq
 
 - name: configure the webservers
   hosts: webservers
