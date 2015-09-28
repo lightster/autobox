@@ -5,6 +5,9 @@
   with_items:
    - rabbitmq-server
 
+- name: Enable rabbitmq-server
+  service: name=rabbitmq-server enabled=yes state=started
+
 - name: Allow rabbit traffic through the firewall
   firewalld: zone=public port={{ item }}/tcp permanent=true state=enabled
   with_items:
