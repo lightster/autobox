@@ -2,3 +2,6 @@
 
 - name: restart rabbitmq
   service: name=rabbitmq-server state=restarted
+
+- name: reload systemctl
+  command: systemctl daemon-reload

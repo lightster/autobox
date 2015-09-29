@@ -23,3 +23,19 @@
   notify:
    - restart firewalld
    - wait for firewalld to restart
+
+- name: Set rabbitmq settings
+  lineinfile: >
+    dest=/etc/systemd/system/rabbitmq-server.service.d/open_files.conf
+    regexp='{{ item.regex }}'
+    line='{{ item.value }}'
+    state=present
+    create=yes
+    owner=root
+    group=root
+  with_items:
+    - { regex: '^[Service]', value: '[Service]' }
+    - { regex: '^LimitNOFILE=', value: 'LimitNOFILE=102400' }
+  notify:
+   - restart rabbitmq
+   - reload systemctl
