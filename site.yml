@@ -1,18 +1,12 @@
 ---
 # This playbook deploys the whole application stack in this site.  
 
-- name: apply common configuration to all nodes
-  hosts: all
-  sudo: yes
-
-  roles:
-    - common
-
 - name: configure the spf nodes
   hosts: spf
   sudo: yes
 
   roles:
+    - common
     - mail-forwarder
     - webfrontend
     - rabbitmq
@@ -22,6 +16,7 @@
   sudo: yes
 
   roles:
+    - common
     - webservers
     - composer
     - mariadb
