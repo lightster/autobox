@@ -34,7 +34,7 @@
     owner=root
     group=root
   with_items:
-    - { regex: '^[Service]', value: '[Service]' }
+    - { regex: '^\[Service\]', value: '[Service]' }
     - { regex: '^LimitNOFILE=', value: 'LimitNOFILE=102400' }
   notify:
    - restart rabbitmq
