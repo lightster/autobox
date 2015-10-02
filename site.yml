@@ -1,30 +1,6 @@
 ---
 # This playbook deploys the whole application stack in this site.  
 
-- name: configure the spf nodes
-  hosts: spf
-  sudo: yes
-
-  roles:
-    - common
-    - mail-forwarder
-    - webfrontend
-    - rabbitmq
-
-- name: configure the webservers
-  hosts: webservers
-  sudo: yes
-
-  roles:
-    - common
-    - webservers
-    - composer
-    - mariadb
-
-- name: install lidsys-web codebase
-  hosts: webservers
-  sudo: yes
-  serial: 1
-
-  roles:
-    - lidsys-web
+- include: spf.yml
+- include: webservers.yml
+- include: lidsys-codebase.yml

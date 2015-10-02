@@ -1,0 +1,11 @@
+---
+
+- name: configure the spf nodes
+  hosts: spf
+  sudo: yes
+
+  roles:
+    - common
+    - mail-forwarder
+    - webfrontend
+    - rabbitmq

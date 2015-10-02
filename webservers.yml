@@ -1,0 +1,11 @@
+---
+
+- name: configure the webservers
+  hosts: webservers
+  sudo: yes
+
+  roles:
+    - common
+    - webservers
+    - composer
+    - mariadb
