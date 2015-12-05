@@ -46,27 +46,13 @@
   when: hostvars[item].ipv4 is defined
   with_items: groups['webservers']
 
-- name: Install lightdatasys.com app 'app' config
+- name: Install lightdatasys.com configs
   template: >
-    src=app/config/autoload/app.local.php.j2
-    dest=/var/www/html/lidsys-web/config/autoload/app.local.php
-
-- name: Install lightdatasys.com app 'auth' config
-  template: >
-    src=app/config/autoload/auth.local.php.j2
-    dest=/var/www/html/lidsys-web/config/autoload/auth.local.php
-
-- name: Install lightdatasys.com app 'database' config
-  template: >
-    src=app/config/autoload/database.local.php.j2
-    dest=/var/www/html/lidsys-web/config/autoload/database.local.php
-
-- name: Install lightdatasys.com app 'debug' config
-  template: >
-    src=app/config/autoload/debug.local.php.j2
-    dest=/var/www/html/lidsys-web/config/autoload/debug.local.php
-
-- name: Install lightdatasys.com app 'mailer' config
-  template: >
-    src=app/config/autoload/mailer.local.php.j2
-    dest=/var/www/html/lidsys-web/config/autoload/mailer.local.php
+    src=app/config/autoload/{{ item }}.local.php.j2
+    dest=/var/www/html/lidsys-web/config/autoload/{{ item }}.local.php
+  with_items:
+    - app
+    - auth
+    - database
+    - debug
+    - mailer
