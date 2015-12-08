@@ -6,6 +6,5 @@
 
   roles:
     - common
-    - mail-forwarder
     - webfrontend
     - rabbitmq
