@@ -1,8 +1,8 @@
 [spf]
-smart      ansible_ssh_host=smart.l.com  ipv4=192.168.60.71 domain_suffix=.smart.l.com
+smart      ansible_ssh_host=smart.l.com  ipv4=192.168.60.71 domain_suffix=.smart.l.com ansible_ssh_user=vagrant ansible_ssh_private_key_file=~/.vagrant.d/insecure_private_key ansible_sudo_pass=vagrant
 
 [webservers]
-bourne     ansible_ssh_host=bourne.l.com ipv4=192.168.60.61 domain_suffix=.bourne.l.com
+bourne     ansible_ssh_host=bourne.l.com ipv4=192.168.60.61 domain_suffix=.bourne.l.com ansible_ssh_user=vagrant ansible_ssh_private_key_file=~/.vagrant.d/insecure_private_key ansible_sudo_pass=vagrant
 
 [all:vars]
 hostname_suffix=.l.com
