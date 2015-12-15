@@ -19,4 +19,15 @@
    - https
   notify:
    - restart firewalld
-   - wait for firewalld to restart
+   - wait for firewalld to restart 
+
+- name: Enable syslog
+  lineinfile: >
+    dest=/etc/rsyslog.conf
+    line='{{ item.value }}'
+    state=present
+  with_items:
+    - { value: '$ModLoad imudp' }
+    - { value: '$UDPServerRun 514' }
+    - { value: '$UDPServerAddress 127.0.0.1' }
+  notify: restart rsyslog
