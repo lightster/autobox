@@ -79,8 +79,4 @@ frontend  main *:80
 #---------------------------------------------------------------------
 backend app
     balance     roundrobin
-    server  app1 127.0.0.1:5001 check
-    server  app2 127.0.0.1:5002 check
-    server  app3 127.0.0.1:5003 check
-    server  app4 127.0.0.1:5004 check
-
+    server  bourne bourne:80 check
