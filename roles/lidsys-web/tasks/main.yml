@@ -33,9 +33,10 @@
 - name: Install lightdatasys.com nginx vhost
   template: src=nginx/conf.d/lightdatasys.com.conf.j2 dest=/etc/nginx/conf.d/lightdatasys.com.conf
 
-- name: Make sure lidsys DB user exists
+- name: Make sure lidsys@webserver DB user exists
   mysql_user: >
     check_implicit_admin=yes
+    login_host={{ lidsys_mariadb_hostname }}
     login_user={{ mariadb_superuser_username }}
     login_password={{ mariadb_superuser_password }}
     host={{ hostvars[item].ipv4 }}
@@ -45,6 +46,18 @@
     state=present
   when: hostvars[item].ipv4 is defined
   with_items: groups['webservers']
+
+- name: Make sure lidsys@localhost DB user exists
+  mysql_user: >
+    check_implicit_admin=yes
+    login_host={{ lidsys_mariadb_hostname }}
+    login_user={{ mariadb_superuser_username }}
+    login_password={{ mariadb_superuser_password }}
+    host=localhost
+    name={{ lidsys_mariadb_username }}
+    password={{ lidsys_mariadb_password }}
+    priv={{ lidsys_mariadb_database }}.*:ALL
+    state=present
 
 - name: Install lightdatasys.com configs
   template: >
