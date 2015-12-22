@@ -32,6 +32,7 @@
 
 - name: Install lightdatasys.com nginx vhost
   template: src=nginx/conf.d/lightdatasys.com.conf.j2 dest=/etc/nginx/conf.d/lightdatasys.com.conf
+  notify: reload nginx
 
 - name: Make sure lidsys@webserver DB user exists
   mysql_user: >
