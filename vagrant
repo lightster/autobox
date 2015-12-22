@@ -1,10 +1,11 @@
 [spf]
-smart      ansible_ssh_host=smart.l.com  ipv4=192.168.60.71 domain_suffix=.smart.l.com ansible_ssh_user=boxkeeper
+smart      ansible_ssh_host=smart.l.com  ipv4=192.168.60.71 ansible_ssh_user=boxkeeper
 
 [webservers]
-bourne     ansible_ssh_host=bourne.l.com ipv4=192.168.60.61 domain_suffix=.bourne.l.com ansible_ssh_user=boxkeeper
+bourne     ansible_ssh_host=bourne.l.com ipv4=192.168.60.61 ansible_ssh_user=boxkeeper
 
 [all:vars]
+domain_suffix=.l.com
 hostname_suffix=.l.com
 lidsys_mailer_recipient_override=root@localhost
 lidsys_mariadb_hostname=10.0.2.2
