@@ -66,10 +66,9 @@
   notify: restart php-fpm
 
 - name: Allow web traffic through the firewall
-  firewalld: service={{ item }} permanent=true state=enabled
+  firewalld: port={{ item }} permanent=true state=enabled
   with_items:
-   - http
-   - https
+   - 8081/tcp
   notify:
    - restart firewalld
    - wait for firewalld to restart
