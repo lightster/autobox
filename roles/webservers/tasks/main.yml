@@ -72,7 +72,7 @@
 - name: Allow web traffic through the firewall
   firewalld: port={{ item }} permanent=true state=enabled
   with_items:
-   - 8081/tcp
+   - "{{ nginx_default_port }}/tcp"
   notify:
    - restart firewalld
    - wait for firewalld to restart

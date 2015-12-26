@@ -1,5 +1,5 @@
 server {
-    listen      8081;
+    listen      {{ nginx_default_port }};
     server_name lightdatasys.com{{ domain_suffix }};
     index       index.php;
 

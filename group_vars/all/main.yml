@@ -7,3 +7,4 @@ git_version: 2.3.5
 timezone: UTC
 yum_upgrade_update_cache: yes
 composer_path: /usr/local/bin/composer
+nginx_default_port: 8081
