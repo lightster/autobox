@@ -68,4 +68,6 @@ frontend  main *:80
 #---------------------------------------------------------------------
 backend app
     balance     roundrobin
-    server  bourne bourne:{{ nginx_default_port }} check
+{% for host in groups['webservers'] + groups['spf'] %}
+    server  {{ host }} {{ host }}:{{ nginx_default_port }} check
+{% endfor %}
