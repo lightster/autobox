@@ -1,7 +1,9 @@
 ---
 
 - name: configure the webservers
-  hosts: webservers
+  hosts:
+    - spf
+    - webservers
   sudo: yes
 
   roles:
