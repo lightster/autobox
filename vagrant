@@ -1,4 +1,5 @@
 [spf]
+hunt       ansible_ssh_host=hunt.l.com   ipv4=192.168.60.81 ansible_ssh_user=boxkeeper
 smart      ansible_ssh_host=smart.l.com  ipv4=192.168.60.71 ansible_ssh_user=boxkeeper
 
 [webservers]
