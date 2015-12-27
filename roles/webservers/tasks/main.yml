@@ -37,6 +37,13 @@
     owner='{{ keeper_username }}'
     group='{{ web_username }}'
 
+- name: Make sure /var/www/html exists
+  file: >
+    path=/var/www/html
+    state=directory
+    owner='{{ keeper_username }}'
+    group='{{ web_username }}'
+
 - name: Set PHP timezone
   lineinfile: >
     dest=/etc/php.d/timezone.ini
