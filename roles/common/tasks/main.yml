@@ -54,6 +54,10 @@
 - name: Disable SELinux
   selinux: state=disabled
 
+- name: Uninstall Avahi
+  yum: name=avahi state=absent update_cache=no
+
+
 
 - name: Add passwordless sudo to wheel group
   lineinfile: "dest=/etc/sudoers state=present regexp='^%wheel' line='%wheel ALL=(ALL) NOPASSWD: ALL'"
