@@ -36,3 +36,16 @@
     password={{ mariadb_superuser_password }}
     priv=*.*:ALL,GRANT
     state=present
+
+- name: set mariadb superuser's password
+  mysql_user: >
+    check_implicit_admin=yes
+    login_user={{ mariadb_superuser_username }}
+    login_password={{ mariadb_superuser_password }}
+    host={{ hostvars[item].ipv4 }}
+    name={{ mariadb_superuser_username }}
+    password={{ mariadb_superuser_password }}
+    priv=*.*:ALL,GRANT
+    state=present
+  when: hostvars[item].ipv4 is defined
+  with_items: groups['webservers']
