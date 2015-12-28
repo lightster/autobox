@@ -1,7 +1,9 @@
 ---
 
 - name: install lidsys-web codebase
-  hosts: webservers
+  hosts:
+    - spf
+    - webservers
   sudo: yes
   serial: 1
 
