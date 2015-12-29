@@ -1,0 +1,8 @@
+server {
+    listen {{ nginx_default_port }};
+    server_name mailgun.r34d.me{{ domain_suffix }};
+
+    location / {
+        proxy_pass https://api.mailgun.net;
+    }
+}

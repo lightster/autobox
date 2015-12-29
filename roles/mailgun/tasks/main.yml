@@ -1,0 +1,5 @@
+---
+
+- name: Install mailgun.r34d.me nginx vhost
+  template: src=nginx/conf.d/mailgun.r34d.me.conf.j2 dest=/etc/nginx/conf.d/mailgun.r34d.me.conf
+  notify: reload nginx
