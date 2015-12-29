@@ -11,3 +11,5 @@
     - webservers
     - composer
     - mariadb
+  handlers:
+    - include: handlers/nginx.yml
