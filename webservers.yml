@@ -11,6 +11,5 @@
     - webservers
     - composer
     - mailgun
-    - mariadb
   handlers:
     - include: handlers/nginx.yml

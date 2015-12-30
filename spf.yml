@@ -8,3 +8,4 @@
     - common
     - webfrontend
     - rabbitmq
+    - mariadb
