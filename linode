@@ -1,5 +1,5 @@
 [spf]
-#smart     ansible_ssh_host=smart.r34d.me  ipv4=50.116.5.177    ipv6=2600:3c01::f03c:91ff:fe89:e8bb
+smart     ansible_ssh_host=smart.r34d.me  ipv4=50.116.5.177    ipv6=2600:3c01::f03c:91ff:fe89:e8bb
 
 [webservers]
 #bond      ansible_ssh_host=bourne.r34d.me ipv4=198.74.51.60    ipv6=2600:3c01::f03c:91ff:feae:7818
