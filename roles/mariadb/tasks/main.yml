@@ -9,6 +9,12 @@
 - name: Enable mariadb
   service: name=mariadb enabled=yes state=started
 
+- name: Allow mariadb traffic through the firewall
+  firewalld: service=mysql permanent=true state=enabled
+  notify:
+   - restart firewalld
+   - wait for firewalld to restart
+
 - name: delete anonymous mariadb user for localhost
   mysql_user: >
     check_implicit_admin=yes
