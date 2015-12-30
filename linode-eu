@@ -1,0 +1,13 @@
+[spf]
+hunt      ansible_ssh_host=hunt.r34d.me   ipv4=139.162.158.121 ipv6=2a01:7e01::f03c:91ff:fe61:849e
+
+[webservers]
+
+[all:vars]
+domain_suffix=.hunt.r34d.me
+hostname_suffix=.r34d.me
+lidsys_mariadb_hostname=hunt
+lidsys_mariadb_database=eu_lidsys
+mailforwarder_mariadb_hostname=smart
+mailforwarder_mariadb_database=mailserver
+application_environment=production

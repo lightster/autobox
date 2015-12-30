@@ -1,5 +1,4 @@
 [spf]
-#hunt      ansible_ssh_host=hunt.r34d.me   ipv4=139.162.158.121 ipv6=2a01:7e01::f03c:91ff:fe61:849e
 #smart     ansible_ssh_host=smart.r34d.me  ipv4=50.116.5.177    ipv6=2600:3c01::f03c:91ff:fe89:e8bb
 
 [webservers]
