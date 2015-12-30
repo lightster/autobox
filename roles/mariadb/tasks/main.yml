@@ -48,4 +48,4 @@
     priv=*.*:ALL,GRANT
     state=present
   when: hostvars[item].ipv4 is defined
-  with_items: groups['webservers']
+  with_items: groups['webservers'] + groups['spf']
