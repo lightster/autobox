@@ -32,8 +32,8 @@
 port 1194
 
 # TCP or UDP server?
-;proto tcp
-proto udp
+proto tcp
+;proto udp
 
 # "dev tun" will create a routed IP tunnel,
 # "dev tap" will create an ethernet tunnel.
@@ -75,14 +75,14 @@ dev tun
 # Any X509 key management system can be used.
 # OpenVPN can also use a PKCS #12 formatted key file
 # (see "pkcs12" directive in man page).
-ca ca.crt
-cert server.crt
-key server.key  # This file should be kept secret
+ca easy-rsa/keys/ca.crt
+cert easy-rsa/keys/server.crt
+key easy-rsa/keys/server.key  # This file should be kept secret
 
 # Diffie hellman parameters.
 # Generate your own with:
 #   openssl dhparam -out dh2048.pem 2048
-dh dh2048.pem
+dh easy-rsa/keys/dh2048.pem
 
 # Network topology
 # Should be subnet (addressing via IP)
@@ -189,7 +189,7 @@ ifconfig-pool-persist ipp.txt
 # (The OpenVPN server machine may need to NAT
 # or bridge the TUN/TAP interface to the internet
 # in order for this to work properly).
-;push "redirect-gateway def1 bypass-dhcp"
+push "redirect-gateway def1 bypass-dhcp"
 
 # Certain Windows-specific network settings
 # can be pushed to clients, such as DNS
@@ -197,8 +197,8 @@ ifconfig-pool-persist ipp.txt
 # http://openvpn.net/faq.html#dhcpcaveats
 # The addresses below refer to the public
 # DNS servers provided by opendns.com.
-;push "dhcp-option DNS 208.67.222.222"
-;push "dhcp-option DNS 208.67.220.220"
+push "dhcp-option DNS 8.8.8.8"
+push "dhcp-option DNS 8.8.4.4"
 
 # Uncomment this directive to allow different
 # clients to be able to "see" each other.
@@ -264,8 +264,8 @@ comp-lzo
 #
 # You can uncomment this out on
 # non-Windows systems.
-;user nobody
-;group nobody
+user nobody
+group nobody
 
 # The persist options will try to avoid
 # accessing certain resources on restart

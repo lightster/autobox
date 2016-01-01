@@ -1,0 +1,9 @@
+---
+
+- name: configure the vpn-servers
+  hosts:
+    - vpn-servers
+  sudo: yes
+  roles:
+    - common
+    - vpn-servers
