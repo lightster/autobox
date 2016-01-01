@@ -302,3 +302,11 @@ verb 3
 # sequential messages of the same message
 # category will be output to the log.
 ;mute 20
+
+# Changes the send/receive buffer sizes to
+# improve data transfer speeds through the VPN
+#  - http://www.lowendtalk.com/discussion/40099/why-openvpn-is-so-slow-cool-story
+# This may be unnecessary in OpenVPN >=2.3.9
+#  - https://community.openvpn.net/openvpn/ticket/461
+sndbuf 0
+rcvbuf 0

@@ -34,6 +34,8 @@ verb 3
 ca ca.crt
 cert ${CLIENT_NAME}.crt
 key ${CLIENT_NAME}.key
+sndbuf 0
+rcvbuf 0
 TXT
 tar czf "/root/${CLIENT_NAME}.tblk.tar.gz" "${CLIENT_NAME}.tblk"
 rm -rf "${CLIENT_NAME}.tblk"
