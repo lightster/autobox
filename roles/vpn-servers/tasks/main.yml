@@ -1,0 +1,66 @@
+---
+
+- include_vars: certs.yml
+
+- name: Install packages required for VPN
+  yum: pkg={{ item }} state=present
+  with_items:
+   - openvpn
+   - easy-rsa
+
+- name: Create easy-rsa/keys directory
+  file: path=/etc/openvpn/easy-rsa/keys state=directory mode=0700 recurse=yes
+
+- name: Install server.conf
+  template: src=server.conf.j2 dest=/etc/openvpn/server.conf
+  notify: restart openvpn@server
+
+- name: Enable packet forwarding between public/private IP address
+  sysctl: name="net.ipv4.ip_forward" value=1 sysctl_set=yes state=present reload=yes
+  notify: restart openvpn@server
+
+- name: Install easy-rsa configs
+  template: src=easy-rsa/{{ item }}.j2 dest=/etc/openvpn/easy-rsa.{{ item }}
+  with_items:
+   - vars
+
+- name: Install SSL cert build scripts
+  copy: >
+    src={{ item }}.sh
+    dest=/etc/openvpn/easy-rsa/{{ item }}
+    mode=0755
+  with_items:
+   - build-client
+   - build-server
+
+- name: Allow openvpn traffic through the firewall
+  firewalld: port=1194/tcp permanent=true state=enabled
+  notify:
+   - restart firewalld
+   - wait for firewalld to restart
+
+- name: Check whether masquerade is enabled
+  shell: (grep -c '<masquerade/>' /etc/firewalld/zones/public.xml || true)
+  changed_when: False
+  register: has_masquerade
+
+- name: Setup masquerade in firewalld
+  command: firewall-cmd --permanent --add-masquerade
+  when: has_masquerade.stdout == "0"
+  notify:
+   - restart firewalld
+   - wait for firewalld to restart
+
+- name: Install server certs/keys
+  copy:
+    content: "{{ item.value }}"
+    dest: "/etc/openvpn/easy-rsa/keys/{{ item.key }}"
+    owner: root
+    group: root
+    mode: 0600
+  with_dict: vpn_cert_files
+  no_log: True
+  notify: restart openvpn@server
+
+- name: Enable openvpn
+  service: name=openvpn@server enabled=yes state=started
