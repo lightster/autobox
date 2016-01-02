@@ -7,3 +7,5 @@
   roles:
     - common
     - vpn-servers
+  handlers:
+    - include: handlers/firewalld.yml

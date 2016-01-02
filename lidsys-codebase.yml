@@ -9,3 +9,5 @@
 
   roles:
     - lidsys-web
+  handlers:
+    - include: handlers/firewalld.yml
