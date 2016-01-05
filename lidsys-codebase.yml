@@ -11,3 +11,4 @@
     - lidsys-web
   handlers:
     - include: handlers/firewalld.yml
+    - include: handlers/nginx.yml
