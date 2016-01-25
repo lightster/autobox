@@ -1,12 +1,11 @@
 [spf]
-hunt       ansible_ssh_host=hunt.l.com   ipv4=192.168.60.81 ansible_ssh_user=boxkeeper
 smart      ansible_ssh_host=smart.l.com  ipv4=192.168.60.71 ansible_ssh_user=boxkeeper
 
 [webservers]
-bourne     ansible_ssh_host=bourne.l.com ipv4=192.168.60.61 ansible_ssh_user=boxkeeper
+#bourne     ansible_ssh_host=bourne.l.com ipv4=192.168.60.61 ansible_ssh_user=boxkeeper
 
 [vpn-servers]
-hart       ansible_ssh_host=hart.l.com   ipv4=192.168.60.91 ipv4_local=10.0.0.1        ansible_ssh_user=boxkeeper
+#hart       ansible_ssh_host=hart.l.com   ipv4=192.168.60.91 ipv4_local=10.0.0.1        ansible_ssh_user=boxkeeper
 
 [all:vars]
 domain_suffix=.l.com
