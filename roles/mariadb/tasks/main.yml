@@ -55,3 +55,13 @@
     state=present
   when: hostvars[item].ipv4 is defined
   with_items: groups['webservers'] + groups['spf']
+
+- name: set mariadb backup user's password
+  mysql_user: >
+    check_implicit_admin=yes
+    login_user={{ mariadb_superuser_username }}
+    login_password={{ mariadb_superuser_password }}
+    name={{ mariadb_backup_username }}
+    password={{ mariadb_backup_password }}
+    priv="*.*:LOCK TABLES, SELECT"
+    state=present
