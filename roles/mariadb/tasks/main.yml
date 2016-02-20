@@ -65,3 +65,19 @@
     password={{ mariadb_backup_password }}
     priv="*.*:LOCK TABLES, SELECT"
     state=present
+
+- name: Create mariadb directory for 'backup' user settings
+  file:
+    path: /etc/lightdatasys/mariadb/backup
+    state: directory
+    recurse: yes
+    owner: "{{ keeper_username }}"
+    group: "{{ keeper_username }}"
+
+- name: Install mariadb my.cnf file for 'backup' user credentials
+  template:
+    src: backup.cnf.j2
+    dest: /etc/lightdatasys/mariadb/backup/backup.cnf.j2
+    mode: 0600
+    owner: "{{ keeper_username }}"
+    group: "{{ keeper_username }}"
