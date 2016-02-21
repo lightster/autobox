@@ -81,3 +81,19 @@
     mode: 0600
     owner: "{{ keeper_username }}"
     group: "{{ keeper_username }}"
+
+- name: Create bin directory for keeper user
+  file:
+    path: /home/{{ keeper_username }}/bin
+    state: directory
+    recurse: yes
+    owner: "{{ keeper_username }}"
+    group: "{{ keeper_username }}"
+
+- name: Install run-mariadb-backups.sh script
+  copy:
+    src: run-mariadb-backups.sh
+    dest: /home/{{ keeper_username }}/bin/run-mariadb-backups.sh
+    mode: 0755
+    owner: "{{ keeper_username }}"
+    group: "{{ keeper_username }}"
