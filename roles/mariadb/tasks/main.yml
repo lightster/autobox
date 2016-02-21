@@ -63,5 +63,51 @@
     login_password={{ mariadb_superuser_password }}
     name={{ mariadb_backup_username }}
     password={{ mariadb_backup_password }}
-    priv="*.*:LOCK TABLES, SELECT"
+    priv="*.*:LOCK TABLES,SELECT"
     state=present
+
+- name: Create mariadb directory for 'backup' user settings
+  file:
+    path: /etc/lightdatasys/mariadb/backup
+    state: directory
+    recurse: yes
+    owner: "{{ keeper_username }}"
+    group: "{{ keeper_username }}"
+
+- name: Install mariadb my.cnf file for 'backup' user credentials
+  template:
+    src: backup.cnf.j2
+    dest: /etc/lightdatasys/mariadb/backup/backup.cnf.j2
+    mode: 0600
+    owner: "{{ keeper_username }}"
+    group: "{{ keeper_username }}"
+
+- name: Create bin directory for keeper user
+  file:
+    path: /home/{{ keeper_username }}/bin
+    state: directory
+    recurse: yes
+    owner: "{{ keeper_username }}"
+    group: "{{ keeper_username }}"
+
+- name: Install run-mariadb-backups.sh script
+  copy:
+    src: run-mariadb-backups.sh
+    dest: /home/{{ keeper_username }}/bin/run-mariadb-backups.sh
+    mode: 0755
+    owner: "{{ keeper_username }}"
+    group: "{{ keeper_username }}"
+
+- name: Add MAILTO cron variable
+  cronvar:
+    name: "MAILTO"
+    value: "root@localhost"
+    user: "{{ keeper_username }}"
+
+- name: Add nightly cron to execute run-mariadb-backups
+  cron:
+    name: run-mariadb-backups
+    minute: 0
+    hour: 16
+    user: "{{ keeper_username }}"
+    job: "/home/{{ keeper_username }}/bin/run-mariadb-backups.sh"
