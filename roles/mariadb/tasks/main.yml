@@ -97,3 +97,17 @@
     mode: 0755
     owner: "{{ keeper_username }}"
     group: "{{ keeper_username }}"
+
+- name: Add MAILTO cron variable
+  cronvar:
+    name: "MAILTO"
+    value: "root@localhost"
+    user: "{{ keeper_username }}"
+
+- name: Add nightly cron to execute run-mariadb-backups
+  cron:
+    name: run-mariadb-backups
+    minute: 0
+    hour: 16
+    user: "{{ keeper_username }}"
+    job: "/home/{{ keeper_username }}/bin/run-mariadb-backups.sh"
