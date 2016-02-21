@@ -63,7 +63,7 @@
     login_password={{ mariadb_superuser_password }}
     name={{ mariadb_backup_username }}
     password={{ mariadb_backup_password }}
-    priv="*.*:LOCK TABLES, SELECT"
+    priv="*.*:LOCK TABLES,SELECT"
     state=present
 
 - name: Create mariadb directory for 'backup' user settings
