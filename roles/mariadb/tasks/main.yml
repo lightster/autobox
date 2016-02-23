@@ -77,7 +77,7 @@
 - name: Install mariadb my.cnf file for 'backup' user credentials
   template:
     src: backup.cnf.j2
-    dest: /etc/lightdatasys/mariadb/backup/backup.cnf.j2
+    dest: /etc/lightdatasys/mariadb/backup/my.cnf
     mode: 0600
     owner: "{{ keeper_username }}"
     group: "{{ keeper_username }}"
