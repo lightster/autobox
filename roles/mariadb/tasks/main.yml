@@ -110,4 +110,6 @@
     minute: 0
     hour: 16
     user: "{{ keeper_username }}"
-    job: "/home/{{ keeper_username }}/bin/run-mariadb-backups.sh"
+    job: "/home/{{ keeper_username }}/bin/run-mariadb-backups.sh
+      /etc/lightdatasys/mariadb/backup/my.cnf
+      /home/boxkeeper/backup/snapshot/databases"
