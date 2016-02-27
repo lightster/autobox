@@ -54,11 +54,15 @@
     login_host={{ lidsys_mariadb_hostname }}
     login_user={{ mariadb_superuser_username }}
     login_password={{ mariadb_superuser_password }}
-    host=localhost
+    host={{ item }}
     name={{ lidsys_mariadb_username }}
     password={{ lidsys_mariadb_password }}
     priv={{ lidsys_mariadb_database }}.*:ALL
     state=present
+  with_items:
+    - localhost
+    - 198.74.51.60
+    - bond.r34d.me
 
 - name: Install lightdatasys.com configs
   template: >
