@@ -11,7 +11,7 @@ hart       ansible_ssh_host=hart.r34d.me   ipv4=159.203.146.236 ipv4_local=10.13
 [all:vars]
 domain_suffix=
 hostname_suffix=.r34d.me
-lidsys_mariadb_hostname=smart
+lidsys_mariadb_hostname=localhost
 lidsys_mariadb_database=live_lidsys
 mailforwarder_mariadb_hostname=smart
 mailforwarder_mariadb_database=mailserver
