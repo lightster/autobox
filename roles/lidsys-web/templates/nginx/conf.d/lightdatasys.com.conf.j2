@@ -1,6 +1,6 @@
 server {
     listen      {{ nginx_default_port }};
-    server_name lightdatasys.com{{ domain_suffix }};
+    server_name lightdatasys.com{{ domain_suffix }} www.lightdatasys.com{{ domain_suffix }};
     index       index.php;
 
     root /var/www/html/lidsys-web/public;
