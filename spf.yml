@@ -9,5 +9,3 @@
     - webfrontend
     - rabbitmq
     - mariadb
-  handlers:
-    - include: handlers/firewalld.yml

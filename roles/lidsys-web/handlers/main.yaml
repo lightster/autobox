@@ -6,5 +6,5 @@
 - name: wait for firewalld to restart
   pause: seconds=2
 
-- name: restart openvpn@server
-  service: name=openvpn@server state=restarted
+- name: reload nginx
+  service: name=nginx state=reloaded
