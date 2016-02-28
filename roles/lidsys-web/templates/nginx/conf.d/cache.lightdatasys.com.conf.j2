@@ -1,0 +1,23 @@
+proxy_cache_path
+    /var/lib/nginx/cache/lidsys-web
+    levels=1:2
+    keys_zone=lidsys-web:10m
+    max_size=100m
+    inactive=100000m;
+
+server {
+    listen      {{ nginx_cache_port }};
+    listen      [::]:{{ nginx_cache_port }};
+    server_name lightdatasys.com{{ domain_suffix }};
+
+    location /app/asset/ {
+        proxy_pass                  http://127.0.0.1:{{ nginx_default_port }};
+        proxy_set_header            Host $host;
+        proxy_cache                 lidsys-web;
+        proxy_cache_valid           200 100000m;
+        proxy_ignore_headers        Cache-Control Expires;
+        proxy_cache_revalidate      on;
+        proxy_cache_use_stale       error timeout http_500 http_502 http_503 http_504;
+        proxy_cache_lock            on;
+    }
+}

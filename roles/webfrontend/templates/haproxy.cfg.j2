@@ -61,6 +61,10 @@ defaults
 # main frontend which proxys to the backends
 #---------------------------------------------------------------------
 frontend  main *:80
+    acl url_cache path_beg -i /app/assets
+    acl url_cache path_end -i .jpg .gif .png .css .js
+
+    use_backend cache           if url_cache
     default_backend             app
 
 #---------------------------------------------------------------------
@@ -70,4 +74,10 @@ backend app
     balance     roundrobin
 {% for host in groups['webservers'] + groups['spf'] %}
     server  {{ host }} {{ host }}:{{ nginx_default_port }} check
+{% endfor %}
+
+backend cache
+    balance     roundrobin
+{% for host in groups['webservers'] + groups['spf'] %}
+    server  {{ host }} {{ host }}:{{ nginx_cache_port }} check
 {% endfor %}

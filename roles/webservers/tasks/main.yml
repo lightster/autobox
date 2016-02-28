@@ -13,6 +13,16 @@
   template: src=nginx/nginx.conf.j2 dest=/etc/nginx/nginx.conf
   notify: reload nginx
 
+- name: Create directory for nginx data
+  file:
+    state: directory
+    name: "{{ item }}"
+    owner: nginx
+    group: nginx
+  with_items:
+    - /var/lib/nginx
+    - /var/lib/nginx/cache
+
 - name: Enable nginx
   service: name=nginx enabled=yes state=started
 
