@@ -11,6 +11,3 @@
     - webservers
     - composer
     - mailgun
-  handlers:
-    - include: handlers/firewalld.yml
-    - include: handlers/nginx.yml

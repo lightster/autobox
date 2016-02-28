@@ -3,5 +3,11 @@
 - name: reload haproxy
   service: name=haproxy state=reloaded
 
+- name: restart firewalld
+  service: name=firewalld state=restarted
+
+- name: wait for firewalld to restart
+  pause: seconds=2
+
 - name: restart rsyslog
   service: name=rsyslog state=restarted

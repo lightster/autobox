@@ -1,5 +1,11 @@
 ---
 
+- name: restart firewalld
+  service: name=firewalld state=restarted
+
+- name: wait for firewalld to restart
+  pause: seconds=2
+
 - name: restart rabbitmq
   service: name=rabbitmq-server state=restarted
 
