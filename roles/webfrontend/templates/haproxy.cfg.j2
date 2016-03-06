@@ -63,6 +63,7 @@ defaults
 frontend  main *:80
     acl url_cache path_beg -i /app/assets
     acl url_cache path_end -i .jpg .gif .png .css .js
+    acl url_cache hdr(host)   www.mattlight.com mattlight.com
 
     use_backend cache           if url_cache
     default_backend             app
