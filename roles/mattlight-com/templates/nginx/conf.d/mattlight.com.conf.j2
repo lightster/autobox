@@ -1,0 +1,8 @@
+server {
+    listen      {{ nginx_default_port }};
+    listen      [::]:{{ nginx_default_port }};
+    server_name mattlight.com{{ domain_suffix }} www.mattlight.com{{ domain_suffix }};
+    index       index.html;
+
+    root /var/www/html/mattlight.com;
+}

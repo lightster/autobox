@@ -1,0 +1,10 @@
+---
+
+- name: deploy mattlight.com
+  hosts:
+    - spf
+    - webservers
+  sudo: yes
+
+  roles:
+    - mattlight-com
