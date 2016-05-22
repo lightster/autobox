@@ -1,5 +1,8 @@
 ---
 
+- name: Install PHP
+  yum: pkg=php state=present
+
 - name: Download and run composer installer
   shell: >
     curl -sS https://getcomposer.org/installer | php

@@ -1,0 +1,76 @@
+---
+
+- name: Install the postgresql repo
+  yum: name=https://download.postgresql.org/pub/repos/yum/9.3/redhat/rhel-7-x86_64/pgdg-centos93-9.3-2.noarch.rpm state=present
+
+- name: Install Postgresql
+  yum: pkg=postgresql93-server state=present
+
+- name: Install psycopg2, as required by ansible's postgresql_db
+  yum: pkg=python-psycopg2 state=present
+
+- name: Install PHP modules
+  yum: pkg={{ item }} state=present
+  with_items:
+   - php-bcmath
+   - php-dom
+   - php-mbstring
+   - php-pdo
+   - php-pgsql
+   - php-simplexml
+   - php-xdebug
+
+- name: Set PHP timezone
+  lineinfile: >
+    dest=/etc/php.d/timezone.ini
+    line='date.timezone="{{ timezone }}"'
+    owner=root
+    group=root
+    mode=0644
+    state=present
+    create=yes
+
+- name: Initialize postgres
+  command: /usr/pgsql-9.3/bin/postgresql93-setup initdb
+  args:
+    creates: /var/lib/pgsql/9.3/data/postgresql.conf
+
+- name: Allow passwordless postgres login from localhost
+  lineinfile:
+    dest: /var/lib/pgsql/9.3/data/pg_hba.conf
+    regexp: '{{ item.regex }}'
+    line: '{{ item.value }}'
+  with_items:
+     - regex: 'local\s+all\s+all'
+       value: 'local all all  trust'
+     - regex: 'host\s+all\s+all\s+127\.0\.0\.1/32'
+       value: 'host all all 127.0.0.1/32 trust'
+     - regex: 'host\s+all\s+all\s+::1/128'
+       value: 'host all all ::1/128 trust'
+  notify:
+    - reload postgresql
+
+- name: Start Postgresql
+  service: name=postgresql-9.3 enabled=yes state=started
+
+- name: Create a database for running Hodor automated tests against
+  postgresql_db: name=test_hodor
+
+- name: Install hodor codebase
+  git: repo=git@github.com:lightster/hodor.git
+       dest=/vagrant/codebase/hodor-dev/
+       accept_hostkey=yes
+  sudo: no
+
+- name: Run composer install
+  composer: command=install
+            working_dir=/vagrant/codebase/hodor-dev
+            no_dev=no
+
+- name: Install hodor configs
+  copy:
+    remote_src: yes
+    src: /vagrant/codebase/hodor-dev/config/dist/{{ item }}
+    dest: /vagrant/codebase/hodor-dev/config/{{ item }}
+  with_items:
+    - config.test.php

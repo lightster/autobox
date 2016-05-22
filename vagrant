@@ -7,6 +7,9 @@ smart      ansible_ssh_host=smart.l.com  ipv4=192.168.60.71 ansible_ssh_user=box
 [vpn-servers]
 #hart       ansible_ssh_host=hart.l.com   ipv4=192.168.60.91 ipv4_local=10.0.0.1        ansible_ssh_user=boxkeeper
 
+[macaroon-dev]
+macaroon-dev      ansible_ssh_host=macaroon-dev.l.com  ipv4=192.168.60.61 ansible_ssh_user=boxkeeper
+
 [all:vars]
 domain_suffix=.l.com
 hostname_suffix=.l.com
