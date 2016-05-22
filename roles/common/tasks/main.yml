@@ -24,7 +24,7 @@
 
 
 - name: Install EPEL
-  shell: rpm -Uvh http://mirror.sfo12.us.leaseweb.net/epel/7/x86_64/e/epel-release-7-5.noarch.rpm
+  shell: rpm -Uvh http://mirrors.kernel.org/fedora-epel/epel-release-latest-7.noarch.rpm
     creates=/etc/yum.repos.d/epel.repo
 
 
