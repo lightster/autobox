@@ -67,3 +67,5 @@
 - name: Disable root SSH login
   lineinfile: "dest=/etc/ssh/sshd_config state=present regexp='^PermitRootLogin' line='PermitRootLogin no'"
   notify: restart sshd
+
+- include: ntpd.yml
