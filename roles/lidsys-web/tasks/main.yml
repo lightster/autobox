@@ -16,6 +16,8 @@
   yum: pkg={{item}} state=present
   with_items:
    - npm
+   - php-dom
+   - php-process # for CLI colors
 
 - name: Install lidsys-web codebase
   git: repo=git@github.com:lightster/lidsys-web.git
