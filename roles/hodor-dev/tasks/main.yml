@@ -17,6 +17,7 @@
    - php-mbstring
    - php-pdo
    - php-pgsql
+   - php-process # for CLI colors
    - php-simplexml
    - php-xdebug
 
