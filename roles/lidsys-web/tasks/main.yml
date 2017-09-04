@@ -79,3 +79,40 @@
     - database
     - debug
     - mailer
+
+
+
+- name: Add hourly cron to update scores
+  cron:
+    name: football-update-scores
+    minute: 0
+    hour: '*'
+    user: "{{ keeper_username }}"
+    job: "php /var/www/html/lidsys-web/bin/lidsys football:update-scores >/dev/null"
+
+- name: Add weekly cron to import schedule
+  cron:
+    name: football-import-schedule
+    minute: 0
+    hour: 12
+    weekday: 2 # Tuesday
+    user: "{{ keeper_username }}"
+    job: "php /var/www/html/lidsys-web/bin/lidsys football:import-schedule >/dev/null"
+
+- name: Add weekly cron to send pick reminder
+  cron:
+    name: football-send-reminder
+    minute: 0
+    hour: 12
+    weekday: 2 # Tuesday
+    user: "{{ keeper_username }}"
+    job: "php /var/www/html/lidsys-web/bin/lidsys football:send-reminder >/dev/null"
+
+- name: Add weekly cron to send welcome
+  cron:
+    name: football-send-welcome
+    minute: 0
+    hour: 12
+    weekday: 5 # Friday
+    user: "{{ keeper_username }}"
+    job: "php /var/www/html/lidsys-web/bin/lidsys football:send-welcome >/dev/null"
