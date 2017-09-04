@@ -104,7 +104,7 @@
     name: football-send-reminder
     minute: 0
     hour: 12
-    weekday: 2 # Tuesday
+    weekday: 3 # Wednesday
     user: "{{ keeper_username }}"
     job: "php /var/www/html/lidsys-web/bin/lidsys football:send-reminder >/dev/null"
 
