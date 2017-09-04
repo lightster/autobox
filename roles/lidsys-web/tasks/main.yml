@@ -51,7 +51,7 @@
     priv={{ lidsys_mariadb_database }}.*:ALL
     state=present
   when: hostvars[item].ipv4 is defined
-  with_items: groups['webservers']
+  with_items: "{{ groups['webservers'] }}"
 
 - name: Make sure lidsys@localhost DB user exists
   mysql_user: >

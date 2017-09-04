@@ -54,7 +54,7 @@
     priv=*.*:ALL,GRANT
     state=present
   when: hostvars[item].ipv4 is defined
-  with_items: groups['webservers'] + groups['spf']
+  with_items: "{{ groups['webservers'] + groups['spf'] }}"
 
 - name: set mariadb backup user's password
   mysql_user: >

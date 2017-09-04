@@ -16,11 +16,11 @@
 - name: "Check current timezone"
   shell: "timedatectl | grep -P 'Time[ ]?zone:' | awk -F ': ' '{print $2}' | awk '{print $1}'"
   register: current_timezone
-  changed_when: current_timezone.stdout != '{{ timezone }}'
+  changed_when: current_timezone.stdout != timezone
 
 - name: "Set timezone"
   command: timedatectl set-timezone {{ timezone }}
-  when: current_timezone.stdout != '{{ timezone }}'
+  when: current_timezone.stdout !=  timezone
 
 
 - name: Install EPEL
@@ -46,6 +46,7 @@
    - lsof
    - nc
    - vim
+   - yum-cron
 
 
 - include: git.yml
@@ -69,3 +70,7 @@
   notify: restart sshd
 
 - include: ntpd.yml
+
+
+- name: Start yum-cron
+  service: name=yum-cron enabled=yes state=started

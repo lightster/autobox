@@ -29,7 +29,7 @@
     priv={{ mailforwarder_mariadb_database }}.*:ALL
     state=present
   when: hostvars[item].ipv4 is defined
-  with_items: groups['webservers']
+  with_items: "{{ groups['webservers'] }}"
 
 - name: Make sure DB exists
   mysql_db: >
