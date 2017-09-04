@@ -2,7 +2,7 @@
 
 - name: configure the spf nodes
   hosts: spf
-  sudo: yes
+  become: true
 
   roles:
     - common

@@ -23,7 +23,7 @@
   git: repo=git@github.com:lightster/lidsys-web.git
        dest=/var/www/html/lidsys-web/
        accept_hostkey=yes
-  sudo: no
+  become: false
 
 - name: Run composer install
   composer: command=install

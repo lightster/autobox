@@ -4,7 +4,7 @@
   hosts:
     - spf
     - webservers
-  sudo: yes
+  become: true
 
   roles:
     - mattlight-com

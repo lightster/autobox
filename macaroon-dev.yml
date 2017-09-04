@@ -2,7 +2,7 @@
 
 - name: configure the macaroon-dev nodes
   hosts: macaroon-dev
-  sudo: yes
+  become: true
 
   roles:
     - common

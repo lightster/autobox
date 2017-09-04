@@ -61,7 +61,7 @@
   git: repo=git@github.com:lightster/hodor.git
        dest=/vagrant/codebase/hodor-dev/
        accept_hostkey=yes
-  sudo: no
+  become: false
 
 - name: Run composer install
   composer: command=install
