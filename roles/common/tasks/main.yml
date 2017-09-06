@@ -36,8 +36,8 @@
   template: src=remi.repo.j2 dest=/etc/yum.repos.d/remi.repo owner=root group=root mode=0644
 
 
-- name: Upgrade all packages
-  yum: name=* state=latest update_cache={{ yum_upgrade_update_cache }}
+# - name: Upgrade all packages
+#   yum: name=* state=latest update_cache={{ yum_upgrade_update_cache }}
 
 
 - name: Install useful utility packages
