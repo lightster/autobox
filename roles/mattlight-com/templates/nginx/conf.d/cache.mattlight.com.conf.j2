@@ -1,0 +1,23 @@
+proxy_cache_path
+    /var/lib/nginx/cache/mattlight-com
+    levels=1:2
+    keys_zone=mattlight-com:10m
+    max_size=100m
+    inactive=10m;
+
+server {
+    listen      8082;
+    listen      [::]:8082;
+    server_name mattlight.com{{ domain_suffix }};
+
+    location / {
+        proxy_pass                  http://127.0.0.1:8081;
+        proxy_set_header            Host $host;
+        proxy_cache                 mattlight-com;
+        proxy_cache_valid           200 10m;
+        proxy_ignore_headers        Cache-Control Expires;
+        proxy_cache_revalidate      on;
+        proxy_cache_use_stale       error timeout http_500 http_502 http_503 http_504;
+        proxy_cache_lock            on;
+    }
+}
