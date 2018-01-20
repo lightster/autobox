@@ -10,7 +10,7 @@
 - name: 'Set hostname using `hostname`'
   hostname: name={{ inventory_hostname }}{{ hostname_suffix }}
 
-- include: hosts-file.yml
+- import_tasks: hosts-file.yml
 
 
 - name: "Check current timezone"
@@ -49,9 +49,9 @@
    - yum-cron
 
 
-- include: git.yml
+- import_tasks: git.yml
 
-- include: firewall.yml
+- import_tasks: firewall.yml
 
 
 - name: Disable SELinux
@@ -69,7 +69,7 @@
   lineinfile: "dest=/etc/ssh/sshd_config state=present regexp='^PermitRootLogin' line='PermitRootLogin no'"
   notify: restart sshd
 
-- include: ntpd.yml
+- import_tasks: ntpd.yml
 
 
 - name: Start yum-cron
